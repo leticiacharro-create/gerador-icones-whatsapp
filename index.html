@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Ícones | WhatsApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --card-border: #334155;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #22c55e;
+            --primary-hover: #16a34a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(30, 41, 59, 0.8) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(15, 23, 42, 1) 0px, transparent 50%);
+        }
+
+        .app-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 36px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            backdrop-filter: blur(12px);
+        }
+
+        @media (max-width: 768px) {
+            .app-card {
+                grid-template-columns: 1fr;
+                padding: 24px;
+                gap: 32px;
+            }
+        }
+
+        .header-title {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+
+        .section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #cbd5e1;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .select-wrapper {
+            position: relative;
+        }
+
+        select {
+            width: 100%;
+            padding: 14px 16px;
+            background-color: #0f172a;
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            color: var(--text-main);
+            font-size: 14px;
+            font-weight: 500;
+            font-family: inherit;
+            appearance: none;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        select:hover, select:focus {
+            border-color: #64748b;
+            box-shadow: 0 0 0 3px rgba(100, 116, 139, 0.15);
+        }
+
+        .select-arrow {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--text-muted);
+        }
+
+        .dropzone {
+            border: 2px dashed var(--card-border);
+            border-radius: 16px;
+            padding: 24px 16px;
+            text-align: center;
+            background: rgba(15, 23, 42, 0.5);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .dropzone:hover {
+            border-color: var(--primary);
+            background: rgba(34, 197, 94, 0.04);
+        }
+
+        .dropzone input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .dropzone-icon {
+            width: 36px;
+            height: 36px;
+            margin: 0 auto 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+        }
+
+        .dropzone-text {
+            font-size: 13px;
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        .dropzone-subtext {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .btn-download {
+            margin-top: 8px;
+            padding: 16px;
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 20px rgba(34, 197, 94, 0.25);
+            transition: all 0.2s ease;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 24px rgba(34, 197, 94, 0.35);
+        }
+
+        .btn-download:active {
+            transform: translateY(0);
+        }
+
+        /* Preview Column */
+        .preview-container {
+            background: #0f172a;
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preview-header {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .preview-header::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .canvas-frame {
+            position: relative;
+            border-radius: 50%;
+            padding: 6px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        canvas {
+            border-radius: 50%;
+            display: block;
+            width: 260px;
+            height: 260px;
+            background-color: #000000;
+        }
+
+        .preview-tag {
+            margin-top: 18px;
+            font-size: 12px;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.04);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .file-status {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--primary);
+            margin-top: 6px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-card">
+        <!-- Coluna de Controles -->
+        <div class="section">
+            <div>
+                <h1 class="header-title">Gerador de Ícones</h1>
+                <p class="header-subtitle">Padronização automática para grupos de clientes no WhatsApp.</p>
+            </div>
+
+            <div class="form-group">
+                <label>1. Evento</label>
+                <div class="select-wrapper">
+                    <select id="eventSelect">
+                        <option value="cmo">CMO Summit (Fundo Preto)</option>
+                        <option value="rh">RH Summit (Fundo Rosa)</option>
+                    </select>
+                    <div class="select-arrow">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>2. Logo do Cliente</label>
+                <div class="dropzone">
+                    <input type="file" id="clientLogo" accept="image/png, image/jpeg, image/svg+xml">
+                    <div class="dropzone-icon">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                    </div>
+                    <div class="dropzone-text" id="dropzoneText">Arraste ou clique para enviar o logo</div>
+                    <div class="dropzone-subtext">Suporta arquivos SVG, PNG ou JPG</div>
+                </div>
+                <div class="file-status" id="fileStatus">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span id="fileName">Arquivo carregado com sucesso</span>
+                </div>
+            </div>
+
+            <button class="btn-download" id="downloadBtn">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                Baixar Imagem Formatada
+            </button>
+        </div>
+
+        <!-- Coluna de Preview -->
+        <div class="preview-container">
+            <div class="preview-header">Pré-visualização do Perfil</div>
+            
+            <div class="canvas-frame">
+                <canvas id="canvas" width="640" height="640"></canvas>
+            </div>
+
+            <div class="preview-tag">640 x 640 px • Corte Circular</div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        const eventSelect = document.getElementById('eventSelect');
+        const clientLogoInput = document.getElementById('clientLogo');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const dropzoneText = document.getElementById('dropzoneText');
+        const fileStatus = document.getElementById('fileStatus');
+        const fileNameSpan = document.getElementById('fileName');
+
+        let currentBgColor = '#000000';
+        let currentClientLogoColor = '#ffffff';
+
+        let eventImg = new Image();
+        let clientImg = new Image();
+
+        eventImg.onload = drawCanvas;
+        clientImg.onload = drawCanvas;
+
+        const eventConfig = {
+            'cmo': {
+                logoSrc: 'data:image/png;base64,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',
+                bgColor: '#000000',
+                clientLogoColor: '#ffffff'
+            },
+            'rh': {
+                logoSrc: 'data:image/png;base64,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',
+                bgColor: '#f7167f',
+                clientLogoColor: '#ffffff'
+            }
+        };
+
+        eventSelect.addEventListener('change', function() {
+            const config = eventConfig[this.value];
+            if (config) {
+                eventImg.src = config.logoSrc; 
+                currentBgColor = config.bgColor;
+                currentClientLogoColor = config.clientLogoColor;
+                drawCanvas();
+            }
+        });
+
+        clientLogoInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                dropzoneText.textContent = file.name;
+                fileNameSpan.textContent = file.name;
+                fileStatus.style.display = 'flex';
+
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    clientImg.src = event.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function drawCanvas() {
+            ctx.fillStyle = currentBgColor;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Event Logo
+            if (eventImg.src && eventImg.complete && eventImg.naturalWidth !== 0) {
+                drawImageProportional(eventImg, 120, 140, 400, 140, false);
+            }
+            
+            // Client Logo
+            if (clientImg.src && clientImg.complete && clientImg.naturalWidth !== 0) {
+                drawImageProportional(clientImg, 120, 350, 400, 140, true);
+            }
+            
+            // Linha divisória suave
+            if (eventImg.src && clientImg.src && eventImg.complete && clientImg.complete) {
+                ctx.beginPath();
+                ctx.moveTo(180, 320);
+                ctx.lineTo(460, 320);
+                ctx.strokeStyle = "rgba(255,255,255,0.25)";
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+        }
+
+        function drawImageProportional(img, x, y, maxWidth, maxHeight, applyColorFilter) {
+            let scale = Math.min(maxWidth / img.width, maxHeight / img.height);
+            let newWidth = img.width * scale;
+            let newHeight = img.height * scale;
+            
+            let newX = x + (maxWidth - newWidth) / 2;
+            let newY = y + (maxHeight - newHeight) / 2;
+            
+            if (applyColorFilter) {
+                const tempCanvas = document.createElement('canvas');
+                tempCanvas.width = newWidth;
+                tempCanvas.height = newHeight;
+                const tempCtx = tempCanvas.getContext('2d');
+                
+                tempCtx.drawImage(img, 0, 0, newWidth, newHeight);
+                tempCtx.globalCompositeOperation = 'source-in';
+                tempCtx.fillStyle = currentClientLogoColor;
+                tempCtx.fillRect(0, 0, newWidth, newHeight);
+                
+                ctx.drawImage(tempCanvas, newX, newY);
+            } else {
+                ctx.drawImage(img, newX, newY, newWidth, newHeight);
+            }
+        }
+
+        downloadBtn.addEventListener('click', function() {
+            if (!clientImg.src) {
+                alert("Por favor, faça o upload do logo do cliente antes de baixar.");
+                return;
+            }
+            
+            const dataURL = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            
+            const eventName = eventSelect.value === 'cmo' ? 'CMO-Summit' : 'RH-Summit';
+            link.download = `icone-whatsapp-${eventName}.png`;
+            
+            link.href = dataURL;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+
+        eventSelect.dispatchEvent(new Event('change'));
+    </script>
+</body>
+</html>
