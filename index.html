@@ -209,7 +209,6 @@
             transform: translateY(0);
         }
 
-        /* Preview Column */
         .preview-container {
             background: #0f172a;
             border: 1px solid var(--card-border);
@@ -401,21 +400,21 @@
             ctx.fillStyle = currentBgColor;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // Event Logo
+            // Event Logo - ajustado para área de segurança circular (maxWidth 300, maxHeight 100, x=170, y=170)
             if (eventImg.src && eventImg.complete && eventImg.naturalWidth !== 0) {
-                drawImageProportional(eventImg, 120, 140, 400, 140, false);
+                drawImageProportional(eventImg, 170, 170, 300, 100, false);
             }
             
-            // Client Logo
+            // Client Logo - ajustado para área de segurança circular (maxWidth 300, maxHeight 100, x=170, y=370)
             if (clientImg.src && clientImg.complete && clientImg.naturalWidth !== 0) {
-                drawImageProportional(clientImg, 120, 350, 400, 140, true);
+                drawImageProportional(clientImg, 170, 370, 300, 100, true);
             }
             
             // Linha divisória suave
             if (eventImg.src && clientImg.src && eventImg.complete && clientImg.complete) {
                 ctx.beginPath();
-                ctx.moveTo(180, 320);
-                ctx.lineTo(460, 320);
+                ctx.moveTo(210, 320);
+                ctx.lineTo(430, 320);
                 ctx.strokeStyle = "rgba(255,255,255,0.25)";
                 ctx.lineWidth = 2;
                 ctx.stroke();
