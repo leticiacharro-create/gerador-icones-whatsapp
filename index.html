@@ -297,6 +297,7 @@
                     <select id="eventSelect">
                         <option value="cmo">CMO Summit (Fundo Preto)</option>
                         <option value="rh">RH Summit (Fundo Rosa)</option>
+                        <option value="mdmkt">Mundo do Marketing (Fundo Degradê)</option>
                     </select>
                     <div class="select-arrow">
                         <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -368,6 +369,15 @@
                 logoSrc: 'data:image/png;base64,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',
                 bgColor: '#f7167f',
                 clientLogoColor: '#ffffff'
+            },
+            'mdmkt': {
+                logoSrc: 'MDMKT.jpg',
+                bgColor: {
+                    isGradient: true,
+                    start: '#221650',
+                    end: '#6a3c94'
+                },
+                clientLogoColor: '#ffffff'
             }
         };
 
@@ -377,7 +387,11 @@
                 eventImg.src = config.logoSrc; 
                 currentBgColor = config.bgColor;
                 currentClientLogoColor = config.clientLogoColor;
-                drawCanvas();
+                
+                // Se a imagem já estiver em cache, desenha diretamente
+                if (eventImg.complete) {
+                    drawCanvas();
+                }
             }
         });
 
@@ -397,7 +411,15 @@
         });
 
         function drawCanvas() {
-            ctx.fillStyle = currentBgColor;
+            // Verifica se currentBgColor é um objeto indicando degradê
+            if (typeof currentBgColor === 'object' && currentBgColor.isGradient) {
+                const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                grad.addColorStop(0, currentBgColor.start);
+                grad.addColorStop(1, currentBgColor.end);
+                ctx.fillStyle = grad;
+            } else {
+                ctx.fillStyle = currentBgColor;
+            }
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             // Event Logo - ajustado para área de segurança circular (maxWidth 300, maxHeight 100, x=170, y=170)
@@ -455,7 +477,11 @@
             const dataURL = canvas.toDataURL('image/png');
             const link = document.createElement('a');
             
-            const eventName = eventSelect.value === 'cmo' ? 'CMO-Summit' : 'RH-Summit';
+            let eventName = 'Evento';
+            if (eventSelect.value === 'cmo') eventName = 'CMO-Summit';
+            else if (eventSelect.value === 'rh') eventName = 'RH-Summit';
+            else if (eventSelect.value === 'mdmkt') eventName = 'Mundo-do-Marketing';
+            
             link.download = `icone-whatsapp-${eventName}.png`;
             
             link.href = dataURL;
