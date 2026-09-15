@@ -354,6 +354,8 @@
 
         let currentBgColor = '#000000';
         let currentClientLogoColor = '#ffffff';
+        let currentEventLogoColor = '#ffffff';
+        let currentLineColor = 'rgba(255, 255, 255, 0.3)';
         let applyEventFilter = false;
         
         let eventImg = new Image();
@@ -367,30 +369,40 @@
                 logoSrc: 'data:image/png;base64,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',
                 bgColor: '#000000',
                 clientLogoColor: '#ffffff',
+                eventLogoColor: '#ffffff',
+                lineColor: 'rgba(255, 255, 255, 0.3)',
                 applyEventFilter: false
             },
             'rh': {
                 logoSrc: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPsAAACHCAYAAADQki8cAAAJe0lEQVR4nO3dMUwryRkH8G921+AKb3VykT1taelRuEhh2Y11aaAz1+AuNMelIhTP3TudlJcOivDSPJGG1+HmjirQRHIRHAoKF5xEuYpTUNo057N3d1IgolNkw/p5Z2Zn5//rnmTGg83/7czs7Dfs5y++JwDIP0t1BwBADoQdwBAIO4AhEHYAQyDsAIZA2AEMgbADGAJhBzCEs+wPWHWfrLq/0pvy4YjifkB8OFrq59hGkax2ldhGcaX3F4E/Toj+PSL+OCF+9/D075xgG0WyGj6xN+WV2uHDEUXdQTqd0lhaf8dxP6C4HyR+feKwM8+lwkmLrIbPP6dj/48PRxS+u2LR1X2i1zudJjlvm6m8twz8cULxPwMW/yug+Dog/tOD6i59Fua5tPbjHmeem0p7TqdJ050ztux/9Hlhb1XI+WuLp3XB4ncPT59ngosLS7pdtnDSIrtdTTVsfDyh6e8+vvrF27tVKnxoaRP0efhwRPF1wMLj3tIjGpXWbw9TC/ozPhzR9KuPif5A84R5Lq3fHqb+dxxfB2z69dmrr0s0Z7felFMPOhERKxXJ2a+9+jrn25rWQSd6+qLtdpWv3x7ytR/2yN6tqu7Sq+zdKqUddKKnz8LS4PdPm/O2KaRdq+HzJFOsRGFnm6vN1V5sO0EnV50rZo3V8HnhQ4uv3x7yLIfeEvi9i2w7q9iXrrC2k3yeWI1XiHkuFT60+No//pD6UDkVGVwIhc+HsGeAtVmm9dtDLmqYB0CEsGeK02lyEQtiAEQIe+Y83+qytyqquwI5g7BnEPNcKnxqY1gPqULYM8zpNBF4SA3CnnEIPKQFYdcAAg9pQNg14XSamd6AA9mHsGvEeb+VaFskwDwIu0ZYqUhrn9qpPTEFZkHYNcM8l+xOU3U3QEMIu4ac/RpftYAImAdh11ThQ3oFEMAMCLummOeSnaAWAMAzLcIe9wOmug9ZZO/X8NAMJKZF2MOjnuouZBIrFYVVP4H80SLscT+g2d65sUUKX2K3q5i7QyJLl5JWJbq8p+jynll1X0hdtFUwzyW2WSZrs6xkWG3v1yg87kl/X9CLNmF/tkydbAWYVffJ6TTJqqdTcjsJe7/Go9Mb46q1wnK0GMbrJO4HNN05o9nBhbRpBysViTV8Ke8F+kLYBYm6A6mHITjf4DYcvAxhF4gPR0+HYEg4DYZtlrFQBy9C2AXj44mUKzyG8vAahF0CPp7QdO9c+MYgG/vl4QUIuyT87oHC457QwFvbFe2PyQJxEHaJotMboUc5M8/N5HHWkA0Iu0R8PKHo9Ebo1V3kuXygN4Rdsuj0Rmj7KFsFiyDskvHxROhTfJbAk0JBbwi7AkK3/GbsuQHIDoRdAX4nbpMN81ysyMNcCLsCsciwl7AaD/Mh7ArguXxQAWHPG9xnhwUQ9pzBMB4WQdhzBlMEWARhVyBrZbXADAi7AiLDzscoTQXzIewKCN2/Pp6gxj7MhbArYG9XhLWNOTssgrBLxjxXaOVZkRt2YDWqdzdqV0pad6JPX5VR7042q+6TvVUh0vi2IvNc5QuzCLtkTqcp9H/3PA3j2UaRCmdtshryavDnGYbxEtm7VbEr8cNRrsLuvN9C0FOEsEvCPFf4VT2+e8jNSjzzXLLbVQQ9RQi7JIWTlvA5W3x5L7R9mSyU10odwi5BQdJwNOPn4C0HD/SkDmEXrPB+i+z9mvigXwc40hpehNV4QZjnUuGkJW2BKeoOZLwNaAxhTxnbKJK9XyP725rUs9dyNYQHIbQLO9soZm5zhfWmTPSlS/ZWRcmtoqg7wBAeXqVN2NlmmQp/wn3XecKjnuougAa0CDvzXFr7cQ9HEs+BqzokpcVq/NqnNoK+AK7qkFTmw85KRRxptACu6rCMzIcdmysWw1UdlpH9sMNc4VEPV3VYCsKuIT4cUXjcU90N0AzCrhn+OKHpzllunm4DeRB2zYTvrjB8h8+CsGskPOoxY/bAP6IkdtoQdk1EpzfMpHk6CmemD2HXQNQdsNl3V6q7IRUfjii6vMfaRIoQ9oyLugM2O7hQ3Q0lwj9e5LJaripa7I03mfWmzNlGkXED57B8PKFfvvrI7O3KUwlunTdYlYpkb1dQNx4WY5tlcv68RaZe3YmIost7inJQX8+6PVRaOx7DeA3Yu1XuvG2q7gasiA9HStcgEHZNOJ0mt7fEnREH+Yewa8T50OKqjxACfSHsGmGlIhVOWqq7AZrKftgfJ2TiSvQiVsPn9jc11d0ADWU+7Hw8oej0BpsrfsXpNFG5B5aW+bATEUWnN9hc8SusVCS701TdDdCMFvfZ/7e5YrdK1naFmMJS0sxzM7FI5uzXeHx5z1AvHpLSIuzPou4gCyefMCIiq+6TVffJbleVhd9526Tp12dK3hv0o8UwPovifkDhcY9++e1f2HTnjMX9QPq6gtXwuVX3Zb8taAphT0HcD2i6c0azgwvphSWwsw6SQthTFHUHNN05YzIfzbQaPlbmIRGEPWV8OKLZ3jmFxz1pgbf3cd8dXoewCxIe9aQFXsb576A/hF2g8KhH0d/EbwhipSJhoQ5eg7ALNnt3RTJW6u1tPBEHL0PYJZgdXAjf32/tVjGUhxch7BLw4Uj4/n4M5eE1CLsk4VGPRN+Dx2m38BKEXaLwSOzqvNXwRTYPmkPYJYq6A6Fzd6vuY94OCyHskomcu7NSUWn1Usg2hF2y+DoQ2j7bxLwd5kPYJYv7gdChPPuNK6xt0BvCrkD8d3EPyli4ssMCCLsCscgSWwqr+EC2IewqCLzfzjwXK/IwF8KugMizx1XW54NsQ9gVkF3NBoAIYc8fVK2BBRD2nMEwHhZB2AEMgbADGAJhBzAEwg5gCIQdwBAIO4AhEHYAQyDsAIZA2AEMgbADGAJhV0RUtRo+TrFdwQdbgFyJws4FPpLJ/zMS1naW8bsHIdVq0mxX5KO4cT8Q1nZWicxRku8qUdjjnx6EnVcWHvVENJt5on7v8Di9duOreyGP4/LhyMiwh6c3QkZ0UXfAeILqR4mH8bO9c0rSYFL8cUKz358zU5/tjvtBqkc688cJzb67YmmGiI8nNN05S/U74sNR6m3qgg9HFB5cpPq7x/2Ahe+uEr2W/fzF90s1btX9lc8U448Tis/FHpigC+a5ZG1XiK3wHLqMz9Perqx8vBQfjii+vDf+e2eeS1bdX7nGf9wPlhohLR12ANATVuMBDIGwAxgCYQcwBMIOYAiEHcAQCDuAIRB2AEP8F8QlFu9ZpivXAAAAAElFTkSuQmCC',
                 bgColor: '#f7167f',
                 clientLogoColor: '#ffffff',
+                eventLogoColor: '#ffffff',
+                lineColor: 'rgba(255, 255, 255, 0.3)',
                 applyEventFilter: false
             },
             'mdmkt': {
                 logoSrc: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA2IiBoZWlnaHQ9IjM1IiB2aWV3Qm94PSIwIDAgMTA2IDM1IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNMjguMjYxNiAwTDE0LjEzNzMgMzQuNjUxOUgwTDE0LjEyNDMgMEwyOC4yNjE2IDBaIiBmaWxsPSIjRkZGQURGIi8+CjxwYXRoIGQ9Ik00Mi4zOTk4IDM0LjY0OTRMNTYuNTIxMiAwTDg0Ljc5MzcgMFYzNC42NTE5SDcwLjY1NjVWMC4wMDQ0ODYwN0w1Ni41MzYxIDM0LjY1MTlIMjguMjYyNlYwTDQyLjM5OTggMFYzNC42NDk0WiIgZmlsbD0iI0ZGRkFERiIvPgo8cGF0aCBkPSJNOTguOTMzNSAzNC42NTE5SDg0Ljc5NDdMOTEuODU2OSAxNy4zMjY3SDEwNS45OTRMOTguOTMzNSAzNC42NTE5WiIgZmlsbD0iI0ZGRkFERiIvPgo8L3N2Zz4K',
                 bgColor: '#4c1b99',
                 clientLogoColor: '#ffffff',
+                eventLogoColor: '#ffffff',
+                lineColor: 'rgba(255, 255, 255, 0.3)',
                 applyEventFilter: true
             },
             'td': {
                 logoSrc: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIGlkPSJMYXllcl8yIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NjYuMTYgMjMyLjk0Ij48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjtmaWxsLXJ1bGU6ZXZlbm9kZDt9PC9zdHlsZT48L2RlZnM+PGcgaWQ9IkxheWVyXzEtMiI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMCwwSDMxMi43OFY1Ny4xNEgwVjBaTTEyNy44Miw5Ny43NVYyMzIuOTRoNTcuMTRWOTcuNzVoLTU3LjE0Wm01MzguMzQsMTguNzJjMC0xMy4zNi0yLjg2LTI2LjA1LTguMDItMzcuNDktMy41OC03Ljk1LTguMjUtMTUuMjktMTMuODQtMjEuODRoMGMtMS43NC0yLjA0LTI4LjE0LTMwLjE1LTI4LjE0LTMwLjE1LTE2LjQxLTE3LjIzLTM5LjE3LTI2Ljk5LTYyLjk3LTI2Ljk5aC0xOTkuODFWNTcuMTRoMTkzLjUxYzEyLjE4LDAsMjMuODMsNC45OSwzMi4yMywxMy44MWwxOC44OSwxOS44M2guMDFjNS45Niw2Ljg5LDkuNTYsMTUuODcsOS41NiwyNS42OHMtMy41NSwxOC42NS05LjQyLDI1LjVoMGwtMTkuMDYsMjAuMDFjLTguNCw4LjgyLTIwLjA1LDEzLjgxLTMyLjIzLDEzLjgxaC0xOTMuNDl2NTcuMTVoMTk5Ljc4YzIzLjgsMCw0Ni41NS05Ljc1LDYyLjk3LTI2Ljk5LDAsMCwyNi40MS0yOC4xLDI4LjE3LTMwLjE2LDUuNTktNi41NSwxMC4yNy0xMy45LDEzLjg1LTIxLjg1LDUuMTQtMTEuNDMsOC4wMS0yNC4xMiw4LjAxLTM3LjQ4aDBaIi8+PC9nPjwvc3ZnPg==',
                 bgColor: '#000000',
                 clientLogoColor: '#ffffff',
+                eventLogoColor: '#ffffff',
+                lineColor: 'rgba(255, 255, 255, 0.3)',
                 applyEventFilter: true
             },
             'td_scale': {
-                logoSrc: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQwIiBoZWlnaHQ9IjQwIiB2aWV3Qm94PSIwIDAgMjQwIDQwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNMzEuNzcgNDBIMjEuOTZWMTYuNzhIMzEuNzdWNDBaTTk0Ljc2IDBDOTguODUgMCAxMDIuNzYgMS42OCAxMDUuNTcgNC42NEMxMDUuNTcgNC42NCAxMTAuMTEgOS40NiAxMTAuNDEgOS44MUMxMTEuMzcgMTAuOTMgMTEyLjE3IDEyLjE5IDExMi43OSAxMy41NUMxMTMuNjggMTUuNTEgMTE0LjE3IDE3LjY5IDExNC4xNyAxOS45OUMxMTQuMTcgMjIuMjkgMTEzLjY4IDI0LjQ3IDExMi43OSAyNi40M0MxMTIuMTcgMjcuNzkgMTExLjM3IDI5LjA2IDExMC40MSAzMC4xOEMxMTAuMTEgMzAuNTMgMTA1LjU3IDM1LjM2IDEwNS41NyAzNS4zNkMxMDIuNzUgMzguMzIgOTguODUgMzkuOTkgOTQuNzYgMzkuOTlINjAuNDVWMzAuMThIOTMuNjdDOTUuNzcgMzAuMTggOTcuNzcgMjkuMzIgOTkuMjEgMjcuODFMMTAyLjQ4IDI0LjM4QzEwMy40OCAyMy4yIDEwNC4wOSAyMS42OCAxMDQuMDkgMjBDMTA0LjA5IDE4LjMyIDEwMy40NyAxNi43NyAxMDIuNDUgMTUuNTlMOTkuMjEgMTIuMTlDOTcuNzYgMTAuNjggOTUuNzcgOS44MiA5My42NyA5LjgySDYwLjQ0VjBIOTQuNzVIOTQuNzZaTTUzLjcxIDkuODFIMFYwSDUzLjcxVjkuODFaIiBmaWxsPSIjRkZGQURGIi8+CjxwYXRoIGQ9Ik0xOTIuMTIgMzEuNDdIMTk2LjM1TDE4OC4yOCA4LjAxSDE4My4wMUwxNzQuMjQgMzEuNDdIMTc4LjUxTDE4NS42IDEyLjUxTDE5Mi4xMiAzMS40N1oiIGZpbGw9IiM2MUY1QkYiLz4KPHBhdGggZD0iTTIwNS4yNSAyNy41MkMyMDQuMjcgMjcuNTIgMjAzLjQ3IDI2LjcyIDIwMy40NyAyNS43NFYyNS43M1Y4SDE5OS41M1YyNS43NEMxOTkuNTMgMjguOSAyMDIuMDkgMzEuNDYgMjA1LjI1IDMxLjQ2SDIxNy4wM1YyNy41MkgyMDUuMjVaIiBmaWxsPSIjNjFGNUJGIi8+CjxwYXRoIGQ9Ik0xNjAuMDMgMTIuMDVIMTY5LjgxVjEyLjA0VjguMDRIMTYwLjAzQzE1Ny42OSA4LjA0IDE1NS41MyA5LjA5IDE1NC4wNyAxMC45MkwxNTAuNzYgMTUuMDlDMTQ4LjU5IDE3LjgzIDE0OC41OSAyMS42NCAxNTAuNzYgMjQuMzdMMTU0LjA3IDI4LjU0QzE1NS41MiAzMC4zNyAxNTcuNyAzMS40MiAxNjAuMDMgMzEuNDJIMTY5LjgxVjI3LjQySDE2MC4wM0MxNTguOTIgMjcuNDIgMTU3Ljg5IDI2LjkyIDE1Ny4yIDI2LjA1TDE1My44OSAyMS44OEMxNTIuODkgMjAuNjIgMTUyLjg5IDE4Ljg2IDE1My44OSAxNy41OUwxNTcuMiAxMy40MkMxNTcuODkgMTIuNTUgMTU4LjkyIDEyLjA1IDE2MC4wMyAxMi4wNVoiIGZpbGw9IiM2MUY1QkYiLz4KPHBhdGggZD0iTTEyOS45OCAxMi4wNUgxNDQuMzNWOC4wNUgxMjkuOThDMTI4LjQ0IDguMDUgMTI2Ljk1IDguNjggMTI1Ljg4IDkuNzhMMTI0Ljk5IDEwLjY5QzEyMi43MSAxMy4wNSAxMjIuNzEgMTYuNzMgMTI0Ljk5IDE5LjA4TDEyNS44NyAxOS45OUMxMjYuOTQgMjEuMDkgMTI4LjQ0IDIxLjcyIDEyOS45NyAyMS43MkgxMzguNzRDMTM5LjIgMjEuNzIgMTM5LjY1IDIxLjkxIDEzOS45NyAyMi4yNEwxNDAuODUgMjMuMTVDMTQxLjYyIDIzLjk0IDE0MS42MiAyNS4xOCAxNDAuODUgMjUuOTdMMTM5Ljk3IDI2Ljg4QzEzOS42NSAyNy4yMSAxMzkuMiAyNy40IDEzOC43NCAyNy40SDEyNC4zOVYzMS40SDEzOC43NEMxNDAuMjggMzEuNCAxNDEuNzcgMzAuNzcgMTQyLjg0IDI5LjY3TDE0My43MiAyOC43NkMxNDYgMjYuNDEgMTQ2IDIyLjcyIDE0My43MiAyMC4zN0wxNDIuODQgMTkuNDZDMTQxLjc3IDE4LjM2IDE0MC4yNyAxNy43MyAxMzguNzQgMTcuNzNIMTI5Ljk3QzEyOS41MSAxNy43MyAxMjkuMDYgMTcuNTQgMTI4Ljc0IDE3LjIxTDEyNy44NiAxNi4zQzEyNy4wOSAxNS41MSAxMjcuMDkgMTQuMjcgMTI3Ljg2IDEzLjQ4TDEyOC43NSAxMi41N0MxMjkuMDcgMTIuMjQgMTI5LjUyIDEyLjA1IDEyOS45OCAxMi4wNVoiIGZpbGw9IiM2MUY1QkYiLz4KPHBhdGggZD0iTTIyNy4zMSAxMi4wNUgyMzkuNjdWOC4wNkgyMjcuMzFDMjIzLjYxIDguMDYgMjIwLjYgMTEuMDcgMjIwLjYgMTQuNzdWMjQuN0MyMjAuNiAyOC40IDIyMy42MSAzMS40MSAyMjcuMzEgMzEuNDFIMjM5LjY3VjI3LjQxSDIyNy4zMUMyMjUuODIgMjcuNDEgMjI0LjU5IDI2LjE5IDIyNC41OSAyNC42OVYyMS43MkgyMzUuMjhWMTcuNzJIMjI0LjU5VjE0Ljc1QzIyNC41OSAxMy4yNiAyMjUuODEgMTIuMDUgMjI3LjMxIDEyLjA1WiIgZmlsbD0iIzYxRjVCRiIvPgo8L3N2Zz4K',
-                bgColor: '#004c54', // Tom Verde Água que combina com a identidade
-                clientLogoColor: '#ffffff',
+                logoSrc: 'data:image/svg+xml;base64,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MTQwLjI3IDE3LjczIDEzOC43NCAxNy43M0gxMjkuOTdDMTI5LjUxIDE3LjczIDEzOS4wNiAxNy41NCAxMjguNzQgMTcuMjFMMTI3Ljg2IDE2LjNDMTI3LjA5IDE1LjUxIDEyNy4wOSAxNC4yNyAxjc4NTEzNDhMMTI4Ljc1IDEyLjU3QzEyOS4wNyAxMi4yNCAxMjkuNTIgMTIuMDUgMTI5Ljk4IDEyLjA1WiIgZmlsbD0iIzYxRjVCRiIvPgo8cGF0aCBkPSJNMjI3LjMxIDEyLjA1SDIzOS42N1Y4LjA6SDIyNy43MUMyMjMuNjEgOC4wNiAyMjAuNiAxMS4wNyAyMjAuNiAxNC43N1YyNC43QzIyMC42IDI4LjQgMjIzLjYxIDMxLjQxIDIyNy4zMSAzMS40MUgyMzkuNjdWMjcuNDFIMjI3LjMxQzIyNS44MiAyNy40MSAyMjQuNTkgMjYuMTkgMjI0LjU5IDI0LjY5VjIxLjcySDIzNS4yOFYxNy43MkgyMjQuNTlWMTQuNzVDMjI0LjU5IDEzLjI2IDIyNS44MSAxMi4wNSAyMjcuMzEgMTIuMDVWiIgZmlsbD0iIzYxRjVCRiIvPgo8L3N2Zz4K',
+                bgColor: '#61F5BF',
+                clientLogoColor: '#000000',
+                eventLogoColor: '#000000',
+                lineColor: 'rgba(0, 0, 0, 0.3)',
                 applyEventFilter: true
             }
         };
@@ -401,6 +413,8 @@
                 eventImg.src = config.logoSrc; 
                 currentBgColor = config.bgColor;
                 currentClientLogoColor = config.clientLogoColor;
+                currentEventLogoColor = config.eventLogoColor || config.clientLogoColor;
+                currentLineColor = config.lineColor || 'rgba(255, 255, 255, 0.3)';
                 applyEventFilter = config.applyEventFilter;
                 
                 if (eventImg.complete) {
@@ -424,80 +438,88 @@
             }
         });
 
+        function getScaledDimensions(img, maxWidth, maxHeight, scaleMultiplier = 1.0) {
+            let scale = Math.min(maxWidth / img.width, maxHeight / img.height) * scaleMultiplier;
+            return {
+                width: img.width * scale,
+                height: img.height * scale
+            };
+        }
+
         function drawCanvas() {
             ctx.fillStyle = currentBgColor;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // --- Variáveis de Posicionamento Centralizado ---
             const canvasCenterX = canvas.width / 2;
-            const lineY = 320; // Posição vertical da linha divisória
             const logoMaxWidth = 300;
-            
-            // Área máxima para o Logo do Evento (acima da linha)
-            const eventMaxHeight = 150; 
-            const eventCenterY = lineY - (eventMaxHeight / 2) - 10; // 10px de padding acima da linha
+            const logoMaxHeight = 130;
+            const gap = 25; // Espaçamento entre a borda do logo e a linha divisória
 
-            // Área máxima para o Logo do Cliente (abaixo da linha)
-            const clientMaxHeight = 150;
-            const clientCenterY = lineY + (clientMaxHeight / 2) + 20; // 20px de padding abaixo da linha
+            let eventDim = { width: 0, height: 0 };
+            let clientDim = { width: 0, height: 0 };
 
-            // 1. Desenha o Logo do Evento (Centralizado Horizontal e Verticalmente na sua metade)
-            if (eventImg.src && eventImg.complete && eventImg.naturalWidth !== 0) {
-                drawImageCentered(eventImg, canvasCenterX, eventCenterY, logoMaxWidth, eventMaxHeight, applyEventFilter, eventSelect.value);
+            const hasEvent = eventImg.src && eventImg.complete && eventImg.naturalWidth !== 0;
+            const hasClient = clientImg.src && clientImg.complete && clientImg.naturalWidth !== 0;
+
+            if (hasEvent) {
+                let scaleFactor = 1.0;
+                if (eventSelect.value === 'mdmkt') scaleFactor = 1.25;
+                else if (eventSelect.value === 'td_scale') scaleFactor = 1.15;
+                eventDim = getScaledDimensions(eventImg, logoMaxWidth, logoMaxHeight, scaleFactor);
             }
-            
-            // 2. Desenha o Logo do Cliente (Centralizado Horizontal e Verticalmente na sua metade)
-            if (clientImg.src && clientImg.complete && clientImg.naturalWidth !== 0) {
-                drawImageCentered(clientImg, canvasCenterX, clientCenterY, logoMaxWidth, clientMaxHeight, true, false);
-            }
-            
-            // 3. Desenha a Linha Divisória (Perfeitamente no centro)
-            if (eventImg.src && clientImg.src && eventImg.complete && clientImg.complete) {
-                const lineWidth = 220; // Largura da linha
-                const lineStartX = canvasCenterX - (lineWidth / 2);
-                const lineEndX = canvasCenterX + (lineWidth / 2);
 
+            if (hasClient) {
+                clientDim = getScaledDimensions(clientImg, logoMaxWidth, logoMaxHeight, 1.0);
+            }
+
+            if (hasEvent && hasClient) {
+                // Cálculo dinâmico para centralização perfeita de todo o bloco
+                const totalHeight = eventDim.height + gap + gap + clientDim.height;
+                const startY = (canvas.height - totalHeight) / 2;
+
+                const eventY = startY;
+                const lineY = startY + eventDim.height + gap;
+                const clientY = lineY + gap;
+
+                // Desenha Logo do Evento
+                drawScaledImage(eventImg, canvasCenterX - (eventDim.width / 2), eventY, eventDim.width, eventDim.height, applyEventFilter, currentEventLogoColor);
+
+                // Desenha Linha Divisória (exatamente no ponto médio)
+                const lineWidth = 220;
                 ctx.beginPath();
-                ctx.moveTo(lineStartX, lineY);
-                ctx.lineTo(lineEndX, lineY);
-                ctx.strokeStyle = "rgba(255,255,255,0.25)";
+                ctx.moveTo(canvasCenterX - (lineWidth / 2), lineY);
+                ctx.lineTo(canvasCenterX + (lineWidth / 2), lineY);
+                ctx.strokeStyle = currentLineColor;
                 ctx.lineWidth = 2;
                 ctx.stroke();
+
+                // Desenha Logo do Cliente
+                drawScaledImage(clientImg, canvasCenterX - (clientDim.width / 2), clientY, clientDim.width, clientDim.height, true, currentClientLogoColor);
+
+            } else if (hasEvent) {
+                const eventY = (canvas.height - eventDim.height) / 2;
+                drawScaledImage(eventImg, canvasCenterX - (eventDim.width / 2), eventY, eventDim.width, eventDim.height, applyEventFilter, currentEventLogoColor);
+            } else if (hasClient) {
+                const clientY = (canvas.height - clientDim.height) / 2;
+                drawScaledImage(clientImg, canvasCenterX - (clientDim.width / 2), clientY, clientDim.width, clientDim.height, true, currentClientLogoColor);
             }
         }
 
-        // Função que centraliza a imagem baseada no ponto central (centerX, centerY)
-        function drawImageCentered(img, centerX, centerY, maxWidth, maxHeight, applyColorFilter, eventType) {
-            let scale = Math.min(maxWidth / img.width, maxHeight / img.height);
-            
-            // Ajuste fino de escala para compensar distorções ópticas visuais dependendo do formato do logo.
-            if(eventType === 'mdmkt') {
-                scale *= 1.3;
-            } else if (eventType === 'td_scale') {
-                scale *= 1.15;
-            }
-
-            let newWidth = img.width * scale;
-            let newHeight = img.height * scale;
-            
-            // Calcula a posição X e Y superior esquerda para que o centro da imagem fique em (centerX, centerY)
-            let drawX = centerX - (newWidth / 2);
-            let drawY = centerY - (newHeight / 2);
-            
-            if (applyColorFilter) {
+        function drawScaledImage(img, x, y, width, height, applyFilter, fillColor) {
+            if (applyFilter) {
                 const tempCanvas = document.createElement('canvas');
-                tempCanvas.width = newWidth;
-                tempCanvas.height = newHeight;
+                tempCanvas.width = width;
+                tempCanvas.height = height;
                 const tempCtx = tempCanvas.getContext('2d');
                 
-                tempCtx.drawImage(img, 0, 0, newWidth, newHeight);
+                tempCtx.drawImage(img, 0, 0, width, height);
                 tempCtx.globalCompositeOperation = 'source-in';
-                tempCtx.fillStyle = currentClientLogoColor;
-                tempCtx.fillRect(0, 0, newWidth, newHeight);
+                tempCtx.fillStyle = fillColor;
+                tempCtx.fillRect(0, 0, width, height);
                 
-                ctx.drawImage(tempCanvas, drawX, drawY);
+                ctx.drawImage(tempCanvas, x, y);
             } else {
-                ctx.drawImage(img, drawX, drawY, newWidth, newHeight);
+                ctx.drawImage(img, x, y, width, height);
             }
         }
 
